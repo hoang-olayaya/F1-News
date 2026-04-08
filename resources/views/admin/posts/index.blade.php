@@ -7,10 +7,30 @@
 <div class="row">
     <div class="col-12">
         <div class="card card-primary card-outline">
-            <div class="card-header">
+            <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
                 <a href="{{ route('posts.create') }}" class="btn btn-primary btn-sm">
                     <i class="fas fa-plus"></i> Đăng bài viết mới
                 </a>
+
+                <form action="{{ route('posts.index') }}" method="GET" class="d-flex" role="search">
+                    <div class="input-group input-group-sm" style="max-width: 320px;">
+                        <input
+                            type="text"
+                            name="search"
+                            class="form-control"
+                            placeholder="Tìm theo tiêu đề bài viết..."
+                            value="{{ request('search') }}"
+                        >
+                        <button type="submit" class="btn btn-outline-primary">
+                            <i class="fas fa-search"></i>
+                        </button>
+                        @if(request('search'))
+                            <a href="{{ route('posts.index') }}" class="btn btn-outline-secondary" title="Xóa từ khóa tìm kiếm">
+                                <i class="fas fa-times"></i>
+                            </a>
+                        @endif
+                    </div>
+                </form>
             </div>
             <div class="card-body table-responsive p-0">
                 <table class="table table-hover text-nowrap align-middle">

@@ -9,10 +9,21 @@ use Illuminate\Http\Request;
 class CommentController extends Controller
 {
     // Hiển thị danh sách tất cả bình luận
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->input('search');
+
+        $query = Comment::with(['user', 'post']);
+
+        if ($search) {
+            $query->where('content', 'LIKE', "%{$search}%");
+        }
+
         // Lấy tất cả bình luận, kèm theo thông tin User (người đăng) và Post (bài viết)
-        $comments = Comment::with(['user', 'post'])->orderBy('created_at', 'desc')->paginate(10);
+        $comments = $query->orderBy('created_at', 'desc')
+            ->paginate(10)
+            ->appends(['search' => $search]);
+
         return view('admin.comments.index', compact('comments'));
     }
 

@@ -14,9 +14,19 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::with('category')->orderBy('id', 'desc')->paginate(10);
+        $search = $request->input('search');
+
+        $query = Post::with('category');
+
+        if ($search) {
+            $query->where('title', 'LIKE', "%{$search}%");
+        }
+
+        $posts = $query->orderBy('id', 'desc')
+            ->paginate(10)
+            ->appends(['search' => $search]);
         
         return view('admin.posts.index', compact('posts'));
     }

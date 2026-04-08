@@ -7,6 +7,28 @@
 <div class="row">
     <div class="col-12">
         <div class="card card-primary card-outline">
+            <div class="card-header d-flex justify-content-end align-items-center flex-wrap gap-2">
+                <form action="{{ route('comments.index') }}" method="GET" class="d-flex" role="search">
+                    <div class="input-group input-group-sm" style="max-width: 320px;">
+                        <input
+                            type="text"
+                            name="search"
+                            class="form-control"
+                            placeholder="Tìm theo nội dung bình luận..."
+                            value="{{ request('search') }}"
+                        >
+                        <button type="submit" class="btn btn-outline-primary">
+                            <i class="fas fa-search"></i>
+                        </button>
+                        @if(request('search'))
+                            <a href="{{ route('comments.index') }}" class="btn btn-outline-secondary" title="Xóa từ khóa tìm kiếm">
+                                <i class="fas fa-times"></i>
+                            </a>
+                        @endif
+                    </div>
+                </form>
+            </div>
+
             <div class="card-body table-responsive p-0">
                 @if(session('success'))
                     <div class="alert alert-success m-2">{{ session('success') }}</div>
