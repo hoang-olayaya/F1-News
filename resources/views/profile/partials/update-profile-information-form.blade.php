@@ -1,9 +1,9 @@
-<section class="card bg-dark border-secondary text-white shadow-sm">
+<section class="card bg-body border-body-secondary text-body shadow-sm">
     <div class="card-body p-4">
         <header class="mb-4">
             <h2 class="h5 mb-2">{{ __('Thay Đổi Thông Tin Hồ Sơ') }}</h2>
 
-            <p class="text-secondary mb-0">
+            <p class="text-body-secondary mb-0">
                 {{ __("Cập nhật thông tin hồ sơ tài khoản và địa chỉ email") }}
             </p>
         </header>
@@ -17,12 +17,12 @@
             @method('patch')
 
             <div>
-                <label for="name" class="form-label text-white">{{ __('Tên') }}</label>
+                <label for="name" class="form-label">{{ __('Tên') }}</label>
                 <input
                     id="name"
                     name="name"
                     type="text"
-                    class="form-control bg-dark text-white border-secondary @error('name') is-invalid @enderror"
+                    class="form-control @error('name') is-invalid @enderror"
                     value="{{ old('name', $user->name) }}"
                     required
                     autofocus
@@ -36,12 +36,12 @@
             </div>
 
             <div>
-                <label for="email" class="form-label text-white">{{ __('Email') }}</label>
+                <label for="email" class="form-label">{{ __('Email') }}</label>
                 <input
                     id="email"
                     name="email"
                     type="email"
-                    class="form-control bg-dark text-white border-secondary @error('email') is-invalid @enderror"
+                    class="form-control @error('email') is-invalid @enderror"
                     value="{{ old('email', $user->email) }}"
                     required
                     autocomplete="username"
@@ -54,10 +54,10 @@
 
                 @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
                     <div class="mt-3">
-                        <p class="text-light mb-2">
+                        <p class="text-body mb-2">
                             {{ __('Địa chỉ email chưa được xác minh') }}
 
-                            <button form="send-verification" type="submit" class="btn btn-link p-0 align-baseline text-decoration-underline text-secondary">
+                            <button form="send-verification" type="submit" class="btn btn-link p-0 align-baseline text-decoration-underline text-body-secondary">
                                 {{ __('Nhấp vào đây để gửi lại email xác nhận') }}
                             </button>
                         </p>
@@ -75,7 +75,7 @@
                 <button type="submit" class="btn btn-f1">{{ __('Lưu') }}</button>
 
                 @if (session('status') === 'profile-updated')
-                    <p class="text-secondary mb-0">{{ __('Lưu Thành Công') }}</p>
+                    <p class="text-body-secondary mb-0">{{ __('Lưu Thành Công') }}</p>
                 @endif
             </div>
         </form>

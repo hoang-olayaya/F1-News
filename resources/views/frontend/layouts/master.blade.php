@@ -210,11 +210,130 @@
         @yield('content')
     </main>
 
-    <footer class="text-center py-4 text-muted">
-        <div class="container">
-            <p class="mb-1">&copy; 2026 F1 News - Đồ án Website Thể Thao Tốc Độ.</p>
-            <p class="mb-0">Sinh viên thực hiện: Hoàng</p>
+    <footer class="bg-dark text-light border-top border-danger mt-5" style="border-width: 4px !important;">
+        <div class="container py-5">
+            <div class="row g-4">
+                <!-- Col 1: Brand -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="mb-4">
+                        <h5 class="f1-font fw-bold mb-3" style="color: var(--f1-red);">
+                            <i class="fas fa-flag-checkered me-2"></i>F1 NEWS
+                        </h5>
+                        <p class="small text-secondary mb-0">
+                            Trang tin tức thể thao tốc độ được phát triển như một dự án học tập Laravel MVC. Cập nhật tin tức F1 hàng ngày từ các giải đua quốc tế.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Col 2: Categories -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="mb-4">
+                        <h6 class="f1-font fw-bold mb-3" style="color: var(--f1-red);">
+                            <i class="fas fa-list me-2"></i>DANH MỤC
+                        </h6>
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <a href="/" class="text-decoration-none text-light" style="transition: color 0.3s;">
+                                    <i class="fas fa-newspaper me-2"></i>Tin Tức Mới Nhất
+                                </a>
+                            </li>
+                            <li class="mb-2">
+                                <a href="/" class="text-decoration-none text-light" style="transition: color 0.3s;">
+                                    <i class="fas fa-calendar-alt me-2"></i>Lịch Đua 2026
+                                </a>
+                            </li>
+                            <li class="mb-2">
+                                <a href="/" class="text-decoration-none text-light" style="transition: color 0.3s;">
+                                    <i class="fas fa-trophy me-2"></i>Bảng Xếp Hạng
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Col 3: Quick Links -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="mb-4">
+                        <h6 class="f1-font fw-bold mb-3" style="color: var(--f1-red);">
+                            <i class="fas fa-link me-2"></i>LIÊN KẾT NHANH
+                        </h6>
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <a href="/" class="text-decoration-none text-light" style="transition: color 0.3s;">
+                                    <i class="fas fa-info-circle me-2"></i>Về Chúng Tôi
+                                </a>
+                            </li>
+                            <li class="mb-2">
+                                <a href="/" class="text-decoration-none text-light" style="transition: color 0.3s;">
+                                    <i class="fas fa-file-contract me-2"></i>Điều Khoản Sử Dụng
+                                </a>
+                            </li>
+                            <li class="mb-2">
+                                @if(Auth::check() && Auth::user()->role === 'admin')
+                                    <a href="{{ route('admin.dashboard') }}" class="text-decoration-none text-light" style="transition: color 0.3s;">
+                                        <i class="fas fa-lock me-2"></i>Trang Quản Trị
+                                    </a>
+                                @else
+                                    <a href="{{ route('login') }}" class="text-decoration-none text-light" style="transition: color 0.3s;">
+                                        <i class="fas fa-lock me-2"></i>Đăng Nhập Admin
+                                    </a>
+                                @endif
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Col 4: Contact -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="mb-4">
+                        <h6 class="f1-font fw-bold mb-3" style="color: var(--f1-red);">
+                            <i class="fas fa-envelope me-2"></i>LIÊN HỆ
+                        </h6>
+                        <ul class="list-unstyled">
+                            <li class="mb-2 text-light">
+                                <i class="fas fa-map-marker-alt me-2" style="color: var(--f1-red);"></i>
+                                <span>Hà Nội, Việt Nam</span>
+                            </li>
+                            <li class="mb-2">
+                                <a href="mailto:admin@f1news.local" class="text-decoration-none text-light" style="transition: color 0.3s;">
+                                    <i class="fas fa-envelope me-2" style="color: var(--f1-red);"></i>admin@f1news.local
+                                </a>
+                            </li>
+                            <li class="mb-2">
+                                <a href="https://github.com" target="_blank" class="text-decoration-none text-light" style="transition: color 0.3s;">
+                                    <i class="fab fa-github me-2" style="color: var(--f1-red);"></i>GitHub Repository
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Divider -->
+            <hr class="border-secondary my-4">
+
+            <!-- Bottom Bar -->
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="text-secondary small mb-1">
+                        &copy; 2026 F1 News - WEBSITE TIN TỨC GIẢI ĐUA XE F1.
+                    </p>
+                    <p class="text-secondary small mb-0">
+                        Sinh viên thực hiện: <span class="fw-bold" style="color: var(--f1-red);">Trương Việt Hoàng</span>
+                    </p>
+                </div>
+            </div>
         </div>
+
+        <style>
+            footer a {
+                color: inherit;
+                transition: color 0.3s ease;
+            }
+            footer a:hover {
+                color: var(--f1-red) !important;
+            }
+        </style>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

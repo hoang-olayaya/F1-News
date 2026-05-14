@@ -1,11 +1,11 @@
-<section class="card bg-dark border-secondary text-white shadow-sm">
+<section class="card bg-body border-body-secondary text-body shadow-sm">
     <div class="card-body p-4">
         <header class="mb-4">
             <h2 class="h5 mb-2">
                 {{ __('Xóa Tài Khoản') }}
             </h2>
 
-            <p class="text-secondary mb-0">
+            <p class="text-body-secondary mb-0">
                 {{ __('Sau khi tài khoản của bạn bị xóa, tất cả tài nguyên và dữ liệu trong đó sẽ bị xóa vĩnh viễn. Trước khi xóa tài khoản, vui lòng tải xuống bất kỳ dữ liệu hoặc thông tin nào bạn muốn giữ lại.') }}
             </p>
         </header>
@@ -17,30 +17,30 @@
 
     <div class="modal fade" id="confirmUserDeletionModal" tabindex="-1" aria-labelledby="confirmUserDeletionLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content bg-dark text-white border-secondary">
+            <div class="modal-content bg-body text-body border-body-secondary">
                 <form method="post" action="{{ route('profile.destroy') }}">
                     @csrf
                     @method('delete')
 
-                    <div class="modal-header border-secondary">
+                    <div class="modal-header border-body-secondary">
                         <h2 class="modal-title fs-5" id="confirmUserDeletionLabel">
                             {{ __('Bạn có chắc chắn muốn xóa tài khoản của mình không?') }}
                         </h2>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="{{ __('Close') }}"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('Close') }}"></button>
                     </div>
 
                     <div class="modal-body">
-                        <p class="text-secondary">
+                        <p class="text-body-secondary">
                             {{ __('Sau khi tài khoản của bạn bị xóa, tất cả tài nguyên và dữ liệu trong đó sẽ bị xóa vĩnh viễn. Vui lòng nhập mật khẩu của bạn để xác nhận rằng bạn muốn xóa vĩnh viễn tài khoản của mình.') }}
                         </p>
 
                         <div>
-                            <label for="password" class="form-label text-white">{{ __('Password') }}</label>
+                            <label for="password" class="form-label">{{ __('Password') }}</label>
                             <input
                                 id="password"
                                 name="password"
                                 type="password"
-                                class="form-control bg-dark text-white border-secondary @if($errors->userDeletion->get('password')) is-invalid @endif"
+                                class="form-control @if($errors->userDeletion->get('password')) is-invalid @endif"
                                 placeholder="{{ __('Password') }}"
                             >
 
@@ -52,8 +52,8 @@
                         </div>
                     </div>
 
-                    <div class="modal-footer border-secondary">
-                        <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">
+                    <div class="modal-footer border-body-secondary">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                             {{ __('Cancel') }}
                         </button>
                         <button type="submit" class="btn btn-danger">
