@@ -34,10 +34,10 @@
     <div class="col-lg-3 col-6">
         <div class="small-box text-bg-warning">
             <div class="inner">
-                <h3>{{ $draftPosts }}</h3>
-                <p>Bài viết Lưu nháp</p>
+                <h3>{{ $totalComments }}</h3>
+                <p>Tổng số Bình luận</p>
             </div>
-            <i class="small-box-icon fas fa-edit"></i>
+            <i class="small-box-icon fas fa-comments"></i>
         </div>
     </div>
 

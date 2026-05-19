@@ -89,9 +89,13 @@
             @forelse($post->comments as $comment)
                 <div class="d-flex mb-4">
                     <div class="me-3">
-                        <div class="bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold shadow-sm" style="width: 45px; height: 45px; font-size: 1.1rem;">
-                            {{ strtoupper(substr($comment->user->name, 0, 1)) }}
-                        </div>
+                        @if($comment->user->avatar)
+                            <img src="{{ asset('storage/' . $comment->user->avatar) }}" alt="{{ $comment->user->name }}" class="rounded-circle shadow-sm" style="width: 45px; height: 45px; object-fit: cover;">
+                        @else
+                            <div class="bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold shadow-sm" style="width: 45px; height: 45px; font-size: 1.1rem;">
+                                {{ strtoupper(substr($comment->user->name, 0, 1)) }}
+                            </div>
+                        @endif
                     </div>
                     <div class="w-100">
                         <div class="p-3 rounded" style="background-color: var(--f1-card-bg);">

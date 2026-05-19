@@ -12,7 +12,7 @@
             @csrf
         </form>
 
-        <form method="post" action="{{ route('profile.update') }}" class="d-flex flex-column gap-3">
+        <form method="post" action="{{ route('profile.update') }}" class="d-flex flex-column gap-3" enctype="multipart/form-data">
             @csrf
             @method('patch')
 
@@ -71,6 +71,35 @@
                 @endif
             </div>
 
+            <div>
+                <label for="avatar" class="form-label">{{ __('Hình Đại Diện') }}</label>
+                <div class="mb-3">
+                    @if($user->avatar)
+                        <div class="mb-3">
+                            <img src="{{ asset('storage/' . $user->avatar) }}" alt="Avatar" class="img-fluid rounded" style="max-width: 150px; max-height: 150px; object-fit: cover;">
+                        </div>
+                        <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAvatarModal">
+                            {{ __('Xóa Hình Đại Diện') }}
+                        </button>
+                    @else
+                        <p class="text-body-secondary mb-3">{{ __('Chưa có hình đại diện') }}</p>
+                    @endif
+                </div>
+                <input
+                    id="avatar"
+                    name="avatar"
+                    type="file"
+                    class="form-control @error('avatar') is-invalid @enderror"
+                    accept="image/jpeg,image/png,image/webp"
+                >
+                <small class="text-body-secondary d-block mt-2">{{ __('Định dạng: JPG, PNG, WebP. Kích thước tối đa: 2MB') }}</small>
+                @if ($errors->get('avatar'))
+                    @foreach ($errors->get('avatar') as $message)
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                    @endforeach
+                @endif
+            </div>
+
             <div class="d-flex align-items-center gap-3">
                 <button type="submit" class="btn btn-f1">{{ __('Lưu') }}</button>
 
@@ -79,5 +108,35 @@
                 @endif
             </div>
         </form>
+
+        <!-- Delete Avatar Modal -->
+        <div class="modal fade" id="deleteAvatarModal" tabindex="-1" aria-labelledby="deleteAvatarLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content bg-body text-body border-body-secondary">
+                    <form method="post" action="{{ route('profile.delete-avatar') }}">
+                        @csrf
+                        @method('delete')
+
+                        <div class="modal-header border-body-secondary">
+                            <h5 class="modal-title" id="deleteAvatarLabel">{{ __('Xóa Hình Đại Diện') }}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('Close') }}"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            <p>{{ __('Bạn có chắc chắn muốn xóa hình đại diện không? Hành động này không thể hoàn tác.') }}</p>
+                        </div>
+
+                        <div class="modal-footer border-body-secondary">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                {{ __('Hủy') }}
+                            </button>
+                            <button type="submit" class="btn btn-danger">
+                                {{ __('Xóa') }}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </section>

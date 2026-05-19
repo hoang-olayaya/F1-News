@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'F1 News - Thể Thao Tốc Độ')</title>
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
@@ -177,8 +180,13 @@
                 
                 @auth
                     <div class="dropdown">
-                        <a class="btn btn-outline-secondary dropdown-toggle f1-font px-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius: 4px;">
-                            <i class="far fa-user me-1"></i> {{ Auth::user()->name }}
+                        <a class="btn btn-outline-secondary dropdown-toggle f1-font px-3 d-flex align-items-center gap-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius: 4px;">
+                            @if(Auth::user()->avatar)
+                                <img src="{{ asset('storage/' . Auth::user()->avatar) }}" alt="Avatar" class="rounded-circle" style="width: 24px; height: 24px; object-fit: cover;">
+                            @else
+                                <i class="far fa-user me-1"></i>
+                            @endif
+                            {{ Auth::user()->name }}
                         </a>
                         <ul class="dropdown-menu f1-dropdown-menu dropdown-menu-end shadow-sm" style="border-top: 3px solid var(--f1-red) !important; margin-top: 15px;">
                             <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Trang cá nhân</a></li>

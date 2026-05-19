@@ -36,10 +36,9 @@ Route::middleware(['auth', CheckAdmin::class])->prefix('admin')->group(function 
         $totalCategories = \App\Models\Category::count();  
         $totalUsers = \App\Models\User::count();           
         $totalComments = \App\Models\Comment::count();     
-        $draftPosts = 0; 
         $totalViews = \App\Models\Post::sum('views'); 
 
-        return view('admin.dashboard', compact('totalPosts', 'totalCategories', 'totalUsers', 'totalComments', 'draftPosts', 'totalViews'));
+        return view('admin.dashboard', compact('totalPosts', 'totalCategories', 'totalUsers', 'totalComments', 'totalViews'));
     })->name('admin.dashboard');
 
     Route::resource('categories', CategoryController::class);
@@ -58,6 +57,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::delete('/profile/avatar', [ProfileController::class, 'deleteAvatar'])->name('profile.delete-avatar');
 });
 
 require __DIR__.'/auth.php';
